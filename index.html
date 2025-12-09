@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кликер Battle - Интернет версия</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Подключаем Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database-compat.js"></script>
+    <style>
+        .room-section {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        #roomCode {
+            font-size: 2em;
+            font-weight: bold;
+            color: #4ecca3;
+            letter-spacing: 5px;
+            margin: 10px 0;
+        }
+        .copy-btn {
+            background: #4ecca3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .player-connected {
+            animation: glow 1s infinite alternate;
+        }
+        @keyframes glow {
+            from { box-shadow: 0 0 10px #4ecca3; }
+            to { box-shadow: 0 0 20px #4ecca3; }
+        }
+    </style>
+</head>
+<body>
+    <h1>🌐 Кликер Battle - Игра через Интернет</h1>
+    
+    <div class="game-container">
+        <!-- Секция создания/входа в комнату -->
+        <div class="room-section" id="roomSection">
+            <h2>Создайте или войдите в комнату</h2>
+            
+            <div id="createRoom">
+                <button id="createRoomBtn" class="action-btn">🎮 Создать новую комнату</button>
+                <p>Или введите код комнаты друга:</p>
+                <input type="text" id="joinRoomCode" placeholder="Введите код комнаты" maxlength="6">
+                <button id="joinRoomBtn" class="action-btn">🔗 Присоединиться</button>
+            </div>
+            
+            <div id="roomInfo" style="display: none;">
+                <h3>Код вашей комнаты:</h3>
+                <div id="roomCodeDisplay">
+                    <span id="roomCode">XXXXXX</span>
+                    <button class="copy-btn" onclick="copyRoomCode()">📋 Копировать</button>
+                </div>
+                <p>Отправьте этот код другу, чтобы он мог присоединиться</p>
+                <p>Ожидание второго игрока... <span id="waitingStatus">⌛</span></p>
+                <button id="startGameBtn" class="action-btn" disabled>🎯 Начать игру!</button>
+            </div>
+        </div>
+        
+        <!-- Игровое поле -->
+        <div id="gameSection" style="display: none;">
+            <div class="players">
+                <div class="player" id="player1Card">
+                    <h2><span id="player1Name">Игрок 1</span> <span id="player1Status">🔵</span></h2>
+                    <p>Счёт: <span id="score1">0</span></p>
+                    <p class="connection-info" id="conn1"></p>
+                </div>
+                
+                <div class="player" id="player2Card">
+                    <h2><span id="player2Name">Игрок 2</span> <span id="player2Status">🔴</span></h2>
+                    <p>Счёт: <span id="score2">0</span></p>
+                    <p class="connection-info" id="conn2"></p>
+                </div>
+            </div>
+            
+            <div class="game-info">
+                <h3 id="gameStatus">Ожидание начала игры...</h3>
+                <div class="timer" id="gameTimer">Время: 60 сек</div>
+                <button id="clickButton" class="click-btn" disabled>⚡ КЛИКАЙ БЫСТРЕЕ!</button>
+                <p id="gameMessage">Когда оба игрока будут готовы, игра начнётся автоматически</p>
+            </div>
+            
+            <div class="controls">
+                <button id="leaveRoomBtn" class="secondary-btn">🚪 Покинуть комнату</button>
+                <button id="rematchBtn" class="action-btn">🔄 Реванш</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

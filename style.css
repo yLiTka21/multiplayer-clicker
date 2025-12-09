@@ -1,0 +1,197 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    color: #fff;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.game-container {
+    background-color: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 800px;
+    margin: 40px auto;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.action-btn {
+    background: linear-gradient(to right, #00b4db, #0083b0);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.1em;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 10px;
+    font-weight: bold;
+}
+
+.action-btn:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 180, 219, 0.4);
+}
+
+.action-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.click-btn {
+    background: linear-gradient(to right, #ff416c, #ff4b2b);
+    color: white;
+    border: none;
+    padding: 25px 50px;
+    font-size: 1.8em;
+    border-radius: 60px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin: 30px 0;
+    font-weight: bold;
+    box-shadow: 0 10px 30px rgba(255, 65, 108, 0.3);
+}
+
+.click-btn:hover:not(:disabled) {
+    transform: scale(1.05);
+    box-shadow: 0 15px 35px rgba(255, 65, 108, 0.5);
+}
+
+.click-btn:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.secondary-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 5px;
+}
+
+.secondary-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.players {
+    display: flex;
+    justify-content: space-around;
+    margin: 40px 0;
+    gap: 20px;
+}
+
+.player {
+    flex: 1;
+    padding: 25px;
+    border-radius: 15px;
+    min-width: 200px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid transparent;
+}
+
+#player1Card {
+    border-color: #0074d9;
+}
+
+#player2Card {
+    border-color: #ff4136;
+}
+
+.player h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.player span {
+    font-size: 3em;
+    font-weight: bold;
+    display: block;
+    margin: 10px 0;
+}
+
+#score1 {
+    color: #0074d9;
+}
+
+#score2 {
+    color: #ff4136;
+}
+
+.timer {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #4ecca3;
+    margin: 20px 0;
+}
+
+.game-info {
+    margin: 30px 0;
+}
+
+#gameStatus {
+    font-size: 1.5em;
+    color: #f8f8f8;
+    margin-bottom: 20px;
+}
+
+.connection-info {
+    font-style: italic;
+    color: #aaa;
+    margin-top: 10px;
+}
+
+.controls {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+input[type="text"] {
+    padding: 15px;
+    font-size: 1.1em;
+    border: 2px solid #4ecca3;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    width: 200px;
+    text-align: center;
+    margin: 10px;
+}
+
+input[type="text"]::placeholder {
+    color: #aaa;
+}
+
+/* Адаптивность */
+@media (max-width: 600px) {
+    .players {
+        flex-direction: column;
+    }
+    
+    .click-btn {
+        padding: 20px 40px;
+        font-size: 1.5em;
+    }
+    
+    .game-container {
+        padding: 20px;
+        margin: 20px;
+    }
+}
